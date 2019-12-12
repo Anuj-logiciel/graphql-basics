@@ -1,26 +1,30 @@
-
 const express = require('express');
 const graphqlHTTP = require("express-graphql")
 const schema = require('./schema/schema')
-
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/library', {useNewUrlParser: true, useUnifiedTopology: true });
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function() {
-  console.log('Welecome, Your DB is now connected');
-});
+const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/library';
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connection.once('open',() => {
+    console.log('connected to database');
+})
+mongoose.connection.once('error',() => {
+    console.log('connected to database failed');
+})
+
+app.use(cors());
+
 
 app.use('/graphql', graphqlHTTP({
     schema,
     graphiql: true
 }))
 
-app.listen(5000, () =>{
-    console.log('listening for request on port 5000');
+app.listen(4000, () =>{
+    console.log('listening for request on port 4000');
 })
