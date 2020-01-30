@@ -28,32 +28,35 @@ function AddBook(props) {
 	if (error) return `Error! ${error.message}`;
 	
 	return (
-		<form id="add-book" onSubmit={submitForm}>
-            <div className="field">
-                <label>Book Name:</label>
-                <input type="text" onChange={(e) => setName(e.target.value)}/>
-            </div>
+		<div>
+			<form id="add-book" onSubmit={submitForm}>
+				<div className="field">
+					<label>Book Name:</label>
+					<input type="text" onChange={(e) => setName(e.target.value)}/>
+				</div>
 
-            <div className="field">
-                <label>Genre Name:</label>
-                <input type="text" onChange={(e) => setGenre(e.target.value)}/>
-            </div>
+				<div className="field">
+					<label>Genre Name:</label>
+					<input type="text" onChange={(e) => setGenre(e.target.value)}/>
+				</div>
 
 
-            <div className="field">
-                <label>Author:</label>
-                <select onChange={(e) => setAuthorId(e.target.value)}>
-                    <option>Select Author</option>
-                    {data.authors.map(author => (
-                        <option key={author.id} value={author.id}>
-                        {author.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
+				<div className="field">
+					<label>Author:</label>
+					<select onChange={(e) => setAuthorId(e.target.value)}>
+						<option>Select Author</option>
+						{data.authors.map(author => (
+							<option key={author.id} value={author.id}>
+							{author.name}
+							</option>
+						))}
+					</select>
+				</div>
 
-            <button>Add Book</button>
-        </form>
+				<button>Add Book</button>
+			</form>
+			<hr/>
+		</div>
 	);
 }
 

@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import {useQuery} from '@apollo/react-hooks'
 import BookDetail from './BookDetail'
 import AddBook from './AddBook'
+import AddAuthor from './AddAuthor'
 
 const getBooks = gql`
 	query getBooks{
@@ -26,6 +27,7 @@ function BookList(props){
     return (
         <div>
 			<AddBook />
+			<AddAuthor/>
 
             book List
             
